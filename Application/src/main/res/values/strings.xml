@@ -18,6 +18,9 @@
 
     <!--  BluetoothChat -->
     <string name="send">Send</string>
+    <string name="take">Take Medicine</string>
+    <string name="abuse">Abuse Medicine</string>
+    <string name="forget">Forget Medicine</string>
     <string name="not_connected">You are not connected to a device</string>
     <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Leaving Bluetooth Chat.</string>
     <string name="title_connecting">connecting...</string>
