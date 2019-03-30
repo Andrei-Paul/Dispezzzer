@@ -21,7 +21,7 @@
         <![CDATA[
         
             
-            This application allows an Android devices to mock a Bluetooth Connected Medicine
+            This application allows an Android devices to  MOCK  a Bluetooth Connected Medicine
             Dispenser. It demonstrates all the fundamental Bluetooth capabilites, such as:
               (1) Connect to an Android device
               (2) Accept the Android device transmitted prescription information

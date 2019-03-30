@@ -169,6 +169,7 @@ public class BluetoothChatFragment extends Fragment {
         mConversationArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.message);
 
         mConversationView.setAdapter(mConversationArrayAdapter);
+        mConversationArrayAdapter.add("Dispezzzer:  " + "Am I a joke to you?");
 
         // Initialize the compose field with a listener for the return key
         mOutEditText.setOnEditorActionListener(mWriteListener);
@@ -350,9 +351,31 @@ public class BluetoothChatFragment extends Fragment {
                     byte[] readBuf = (byte[]) msg.obj;
                     // construct a string from the valid bytes in the buffer
                     String readMessage = new String(readBuf, 0, msg.arg1);
-                    switch (readMessage) {
+                    String[] splitMessage = readMessage.split(Constants.MESSAGE_DELIMITER);
+                    switch (splitMessage[0]) {
+                        case Constants.MESSAGE_CONFIGURE:
+                            mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + splitMessage[0] + " ->");
+                            mConversationArrayAdapter.add(new String(new char[mConnectedDeviceName.length()]).replace("\0", " ") + "-  " + splitMessage[1]);
+                            break;
+                        case Constants.MESSAGE_RING:
+                            mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + splitMessage[0] + " *");
+                            android.media.ToneGenerator toneGen1 = new android.media.ToneGenerator (android.media.AudioManager.STREAM_MUSIC, 100);
+                            toneGen1.startTone(android.media.ToneGenerator.TONE_CDMA_PIP,1000);
+                            break;
                         default:
-                            mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
+                            StringBuilder wholeMessage = new StringBuilder();
+                            boolean fix = false;
+                            for (String splinter: splitMessage) {
+                                fix = true;
+                                wholeMessage.append(splinter);
+                                wholeMessage.append(Constants.MESSAGE_DELIMITER);
+                            }
+
+                            if (fix == true)
+                            {
+                                wholeMessage = wholeMessage.deleteCharAt(wholeMessage.length() - 1);
+                            }
+                            mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + wholeMessage.toString());
                     }
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
