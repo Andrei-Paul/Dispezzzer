@@ -16,18 +16,17 @@
 -->
 
 <resources>
-    <string name="app_name">BluetoothChat</string>
+    <string name="app_name">Dispezzzer</string>
     <string name="intro_message">
         <![CDATA[
         
             
-            This application allows two Android devices to carry out two-way text chat over
-            Bluetooth. It demonstrates all the fundamental Bluetooth API capabilites, such as:
-              (1) Scanning for other Bluetooth devices
-              (2) Querying the local Bluetooth adapter for paired Bluetooth devices
-              (3) Establishing RFCOMM channels/sockets
-              (4) Connecting to a remote device
-              (5) Transfering data over Bluetooth
+            This application allows an Android devices to mock a Bluetooth Connected Medicine
+            Dispenser. It demonstrates all the fundamental Bluetooth capabilites, such as:
+              (1) Connect to an Android device
+              (2) Accept the Android device transmitted prescription information
+              (3) Notify the Android device if the prescription is followed, neglected, abused
+              (4) Accept the Android device request for localization
             
         
         ]]>
