@@ -60,6 +60,9 @@ public class BluetoothChatFragment extends Fragment {
     private ListView mConversationView;
     private EditText mOutEditText;
     private Button mSendButton;
+    private Button mTakeButton;
+    private Button mAbuseButton;
+    private Button mForgetButton;
 
     /**
      * Name of the connected device
@@ -151,6 +154,9 @@ public class BluetoothChatFragment extends Fragment {
         mConversationView = (ListView) view.findViewById(R.id.in);
         mOutEditText = (EditText) view.findViewById(R.id.edit_text_out);
         mSendButton = (Button) view.findViewById(R.id.button_send);
+        mTakeButton = (Button) view.findViewById(R.id.button_take);
+        mAbuseButton = (Button) view.findViewById(R.id.button_abuse);
+        mForgetButton = (Button) view.findViewById(R.id.button_forget);
     }
 
     /**
@@ -175,6 +181,45 @@ public class BluetoothChatFragment extends Fragment {
                 if (null != view) {
                     TextView textView = (TextView) view.findViewById(R.id.edit_text_out);
                     String message = textView.getText().toString();
+                    sendMessage(message);
+                }
+            }
+        });
+
+        // Initialize the take button with a listener that for click events
+        mTakeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Send a taken message
+                View view = getView();
+                if (null != view) {
+                    TextView textView = (TextView) view.findViewById(R.id.edit_text_out);
+                    String message = "TAKEN_MEDICINE";
+                    sendMessage(message);
+                }
+            }
+        });
+
+        // Initialize the abuse button with a listener that for click events
+        mAbuseButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Send an abused message
+                View view = getView();
+                if (null != view) {
+                    TextView textView = (TextView) view.findViewById(R.id.edit_text_out);
+                    String message = "ABUSED_MEDICINE";
+                    sendMessage(message);
+                }
+            }
+        });
+
+        // Initialize the forget button with a listener that for click events
+        mForgetButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Send a forgotten message
+                View view = getView();
+                if (null != view) {
+                    TextView textView = (TextView) view.findViewById(R.id.edit_text_out);
+                    String message = "FORGOTTEN_MEDICINE";
                     sendMessage(message);
                 }
             }
@@ -299,13 +344,16 @@ public class BluetoothChatFragment extends Fragment {
                     byte[] writeBuf = (byte[]) msg.obj;
                     // construct a string from the buffer
                     String writeMessage = new String(writeBuf);
-                    mConversationArrayAdapter.add("Me:  " + writeMessage);
+                    mConversationArrayAdapter.add("Dispezzzer:  " + writeMessage);
                     break;
                 case Constants.MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
                     // construct a string from the valid bytes in the buffer
                     String readMessage = new String(readBuf, 0, msg.arg1);
-                    mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
+                    switch (readMessage) {
+                        default:
+                            mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
+                    }
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
                     // save the connected device's name
