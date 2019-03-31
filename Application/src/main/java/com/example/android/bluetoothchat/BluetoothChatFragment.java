@@ -194,7 +194,7 @@ public class BluetoothChatFragment extends Fragment {
                 View view = getView();
                 if (null != view) {
                     TextView textView = (TextView) view.findViewById(R.id.edit_text_out);
-                    String message = "TAKEN_MEDICINE";
+                    String message = Constants.MESSAGE_TAKEN;
                     sendMessage(message);
                 }
             }
@@ -207,7 +207,7 @@ public class BluetoothChatFragment extends Fragment {
                 View view = getView();
                 if (null != view) {
                     TextView textView = (TextView) view.findViewById(R.id.edit_text_out);
-                    String message = "ABUSED_MEDICINE";
+                    String message = Constants.MESSAGE_ABUSED;
                     sendMessage(message);
                 }
             }
@@ -220,7 +220,7 @@ public class BluetoothChatFragment extends Fragment {
                 View view = getView();
                 if (null != view) {
                     TextView textView = (TextView) view.findViewById(R.id.edit_text_out);
-                    String message = "FORGOTTEN_MEDICINE";
+                    String message = Constants.MESSAGE_FORGOTTEN;
                     sendMessage(message);
                 }
             }
@@ -360,7 +360,7 @@ public class BluetoothChatFragment extends Fragment {
                         case Constants.MESSAGE_RING:
                             mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + splitMessage[0] + " *");
                             android.media.ToneGenerator toneGen1 = new android.media.ToneGenerator (android.media.AudioManager.STREAM_MUSIC, 100);
-                            toneGen1.startTone(android.media.ToneGenerator.TONE_CDMA_PIP,1000);
+                            toneGen1.startTone(android.media.ToneGenerator.TONE_CDMA_PIP,2000);
                             break;
                         default:
                             StringBuilder wholeMessage = new StringBuilder();

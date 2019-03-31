@@ -31,6 +31,9 @@ public interface Constants {
     public static final String MESSAGE_DELIMITER = "█";
     public static final String MESSAGE_CONFIGURE = "CONFIGURE_DISPEZZZER";
     public static final String MESSAGE_RING = "RING_DISPEZZZER";
+    public static final String MESSAGE_TAKEN = "TAKEN_DISPEZZZER";
+    public static final String MESSAGE_ABUSED = "ABUSED_DISPEZZZER";
+    public static final String MESSAGE_FORGOTTEN = "FORGOTTEN_DISPEZZZER";
 
 //    public static final String MESSAGE_DELIMITER = ":";
 //    public static final String MESSAGE_CONFIGURE = "CONF";
