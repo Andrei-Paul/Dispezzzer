@@ -330,7 +330,7 @@ public class BluetoothChatFragment extends Fragment {
                     switch (msg.arg1) {
                         case BluetoothChatService.STATE_CONNECTED:
                             setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
-                            mConversationArrayAdapter.clear();
+                            // mConversationArrayAdapter.clear();
                             break;
                         case BluetoothChatService.STATE_CONNECTING:
                             setStatus(R.string.title_connecting);
@@ -354,8 +354,9 @@ public class BluetoothChatFragment extends Fragment {
                     String[] splitMessage = readMessage.split(Constants.MESSAGE_DELIMITER);
                     switch (splitMessage[0]) {
                         case Constants.MESSAGE_CONFIGURE:
-                            mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + splitMessage[0] + " ->");
-                            mConversationArrayAdapter.add(new String(new char[mConnectedDeviceName.length()]).replace("\0", " ") + "-  " + splitMessage[1]);
+                            String DeviceName = mConnectedDeviceName == null ? "New Device" : mConnectedDeviceName;
+                            mConversationArrayAdapter.add(DeviceName + ":  " + splitMessage[0] + " ->");
+                            mConversationArrayAdapter.add(new String(new char[DeviceName.length()]).replace("\0", " ") + "-  " + splitMessage[1]);
                             break;
                         case Constants.MESSAGE_RING:
                             mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + splitMessage[0] + " *");
